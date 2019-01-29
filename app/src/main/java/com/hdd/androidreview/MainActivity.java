@@ -1,5 +1,7 @@
 package com.hdd.androidreview;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,14 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.hdd.androidreview.Patterm.PattermActivity;
+import com.hdd.androidreview.utils.permissionUtil.PermissionUtils;
+
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mLV_Mian;
     private List<String> itemList;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         itemList.add("启动模式");
         MyListMain myListMain = new MyListMain(getApplicationContext(), itemList);
         mLV_Mian.setAdapter(myListMain);
+
+        PermissionUtils.permission(Manifest.permission_group.STORAGE).request();
     }
 
 

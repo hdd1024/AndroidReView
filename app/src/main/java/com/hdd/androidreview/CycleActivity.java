@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.hdd.androidreview.Patterm.PattermActivity;
+
 public class CycleActivity extends AppCompatActivity {
     private static final String TAG = "CycleActivity";
     private final int CHANGE_TEXT = 200;

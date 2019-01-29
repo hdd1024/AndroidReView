@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hdd.androidreview">
+    <!--获取Activity任务栈 权限-->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission
+        android:name="android.permission.DUMP"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -18,11 +26,26 @@
         </activity>
         <activity android:name=".CycleActivity" />
         <activity
-            android:name=".PattermActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Patterm.PattermActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Patterm.SingleTopActivity"
+            android:launchMode="singleTop">
 
         </activity>
+        <activity
+            android:name=".Patterm.SingleTaskActivity"
+            android:launchMode="singleTask">
+
+        </activity>
+        <activity
+            android:name=".Patterm.SingleInstanceActivity"
+            android:launchMode="singleInstance">
+
+        </activity>
+        <activity
+            android:name=".utils.permissionUtil.PermissionUtils$PermissionActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>
