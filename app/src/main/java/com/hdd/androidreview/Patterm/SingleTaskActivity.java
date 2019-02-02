@@ -3,6 +3,7 @@ package com.hdd.androidreview.Patterm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,9 +11,9 @@ import android.widget.TextView;
 import com.hdd.androidreview.R;
 import com.hdd.androidreview.utils.AppUtil;
 
-public class SingleTaskActivity extends AppCompatActivity implements View.OnClickListener {
+public class SingleTaskActivity extends PattermBaseActivity implements View.OnClickListener {
+
     private Button mBnt_Patterm, mBnt_SingTop, mBnt_SingInstance, mBnt_SingTask;
-    private TextView mTV_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class SingleTaskActivity extends AppCompatActivity implements View.OnClic
         mBnt_Patterm.setOnClickListener(this);
         mBnt_SingTop.setOnClickListener(this);
         mBnt_SingInstance.setOnClickListener(this);
+        mBnt_SingTask.setOnClickListener(this);
     }
 
     @Override

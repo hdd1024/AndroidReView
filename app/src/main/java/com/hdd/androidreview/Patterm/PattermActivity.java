@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.hdd.androidreview.MainActivity;
 import com.hdd.androidreview.R;
 import com.hdd.androidreview.utils.AppUtil;
 import com.hdd.androidreview.utils.CommandExecution;
@@ -20,25 +21,14 @@ import com.hdd.androidreview.utils.CommandExecution;
  * 通过搜索关键字 most recent first 快速定位 留意包名}
  * @see
  **********************************************************/
-public class PattermActivity extends AppCompatActivity implements View.OnClickListener {
-    private final String TAG = "PattermActivity";
-    private StringBuilder tvContent = new StringBuilder("启动模式页面:\n");
+public class PattermActivity extends PattermBaseActivity implements View.OnClickListener {
     private Button mBnt_Patterm, mBnt_SingTop, mBnt_SingTask, mBnt_SingInstance, mBnt_cmd;
-    private TextView mTV_Patterm;
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        Log.i(TAG, "==onNewIntent()==");
-
-        tvContent.append("\n***onNewIntent()***\n");
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patterm);
-        mTV_Patterm = findViewById(R.id.mTV_Patterm);
+        mTV_content = findViewById(R.id.mTV_Patterm);
         mBnt_Patterm = findViewById(R.id.mBnt_Patterm);
         mBnt_SingTop = findViewById(R.id.mBnt_SingTop);
         mBnt_SingTask = findViewById(R.id.mBnt_SingTask);
@@ -48,24 +38,11 @@ public class PattermActivity extends AppCompatActivity implements View.OnClickLi
         mBnt_SingTask.setOnClickListener(this);
         mBnt_SingInstance.setOnClickListener(this);
         mBnt_cmd.setOnClickListener(this);
-        mTV_Patterm.setText(tvContent);
+        mBnt_Patterm.setOnClickListener(this);
 
+        Log.i(TAG, "++onCreate++");
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        StringBuilder topActivity = AppUtil.getTaskTopActivity(getApplicationContext());
-        mTV_Patterm.setText(topActivity);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(TAG, "==onStop()==");
-        tvContent.append("\n###onStop()###\n");
-        mTV_Patterm.setText(tvContent);
-    }
 
     @Override
     public void onClick(View v) {
@@ -88,9 +65,10 @@ public class PattermActivity extends AppCompatActivity implements View.OnClickLi
                 intent.setClass(getApplicationContext(), PattermActivity.class);
                 break;
             case R.id.mBnt_cmd:
-                CommandExecution.CommandResult commandResult = CommandExecution.execCommand("dumpsys activity activities", false);
-                Log.i(TAG, "activity栈内结果为:\n\n" + commandResult.successMsg);
-                return;
+//                CommandExecution.CommandResult commandResult = CommandExecution.execCommand("dumpsys activity activities", false);
+//                Log.i(TAG, "activity栈内结果为:\n\n" + commandResult.successMsg);
+                intent.setClass(getApplicationContext(), MainActivity.class);
+                break;
         }
 
         startActivity(intent);

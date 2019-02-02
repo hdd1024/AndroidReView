@@ -5,6 +5,10 @@ import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.hdd.androidreview.Patterm.PattermActivity;
 import com.hdd.androidreview.utils.permissionUtil.PermissionUtils;
 
@@ -38,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         itemList = new ArrayList<>();
         itemList.add("生命周期");
         itemList.add("启动模式");
-        MyListMain myListMain = new MyListMain(getApplicationContext(), itemList);
+        itemList.add("匹配规则");
+        MyListMain myListMain = new MyListMain(this, itemList);
         mLV_Mian.setAdapter(myListMain);
 
         PermissionUtils.permission(Manifest.permission_group.STORAGE).request();
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 myHolder = (MyHolder) convertView.getTag();
             }
             final String textContent = itemList.get(position);
+            myHolder.mTV_test1.setTextColor(Color.BLACK);
             myHolder.mTV_test1.setText(textContent);
             myHolder.mTV_test1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,10 +97,41 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent();
 
                     if ("生命周期".equals(textContent)) {
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.setClass(context, CycleActivity.class);
                     } else if ("启动模式".equals(textContent)) {
+                        // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.setClass(context, PattermActivity.class);
+
+                    } else if ("匹配规则".equals(textContent)) {
+                        //隐式跳转
+                        intent.setAction("12345678");
+                        //category非必须指定。如果要指定，一点要和清单文件中填写的一直。
+                        //intent.addCategory("com.hdd.123456");
+                        intent.setDataAndType(Uri.parse("http://www.sina.com"), "audio/mpeg");
+//                        intent.setData(Uri.parse("http://www.baidu.com"));
+//                        intent.setType("audio/mpeg");
+                        //判断是否匹配成功
+
+                        ComponentName componentName = intent.resolveActivity(context.getPackageManager());
+                        PackageManager packageManager=context.getPackageManager();
+                        ResolveInfo resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                        //packageManager的resolveActivity()方式
+                        if (resolveInfo != null)
+                            context.startActivity(intent);
+                        else
+                            Toast.makeText(context, "匹配不成功", Toast.LENGTH_SHORT).show();
+
+                        //intent的resolveActivity()方式
+
+//                        if (componentName != null)
+//                            context.startActivity(intent);
+//                        else
+//                            Toast.makeText(context, "匹配不成功", Toast.LENGTH_SHORT).show();
+                        return;
                     }
+
                     ComponentName component = intent.getComponent();
                     if (component == null) {
                         Toast.makeText(context, "ComponentName为空", Toast.LENGTH_SHORT).show();

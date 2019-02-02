@@ -3,6 +3,7 @@ package com.hdd.androidreview.Patterm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,9 +11,8 @@ import android.widget.TextView;
 import com.hdd.androidreview.R;
 import com.hdd.androidreview.utils.AppUtil;
 
-public class SingleInstanceActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button mBnt_Patterm, mBnt_SingTop, mBnt_SingTask;
-    private TextView mTV_content;
+public class SingleInstanceActivity extends PattermBaseActivity implements View.OnClickListener {
+    private Button mBnt_Patterm, mBnt_SingTop, mBnt_SingTask, mBnt_SingInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +22,11 @@ public class SingleInstanceActivity extends AppCompatActivity implements View.On
         mBnt_Patterm = findViewById(R.id.mBnt_Patterm);
         mBnt_SingTop = findViewById(R.id.mBnt_SingTop);
         mBnt_SingTask = findViewById(R.id.mBnt_SingTask);
+        mBnt_SingInstance = findViewById(R.id.mBnt_SingInstance);
         mBnt_Patterm.setOnClickListener(this);
         mBnt_SingTop.setOnClickListener(this);
         mBnt_SingTask.setOnClickListener(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        StringBuilder taskTopActivity = AppUtil.getTaskTopActivity(getApplicationContext());
-        mTV_content.setText(taskTopActivity);
+        mBnt_SingInstance.setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +44,9 @@ public class SingleInstanceActivity extends AppCompatActivity implements View.On
             case R.id.mBnt_SingTask:
                 intent.setClass(getApplicationContext(), SingleTaskActivity.class);
 
+                break;
+            case R.id.mBnt_SingInstance:
+                intent.setClass(getApplicationContext(), SingleInstanceActivity.class);
                 break;
         }
 

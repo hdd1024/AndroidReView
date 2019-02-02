@@ -1,51 +1,45 @@
-package com.hdd.androidreview;
+package com.hdd.androidreview.Patterm;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.hdd.androidreview.Patterm.PattermActivity;
+import com.hdd.androidreview.utils.AppUtil;
 
-public class CycleActivity extends AppCompatActivity {
-    private static final String TAG = "CycleActivity";
-    private final int CHANGE_TEXT = 200;
-
+public abstract class PattermBaseActivity extends AppCompatActivity {
+    protected  String TAG;
     private int onNewIntentIndex = 0;
     private int onCreateIndex = 0;
     private int onRestartIndex = 0;
     private int onPauseIndex = 0;
-    private Button mBnt_cycle;
-    private TextView mTV_Cycle, mTV_test1;
-    private EditText mEdt_test;
-    private StringBuilder methdName = new StringBuilder("[开始]\n");//在单线程情况先，StringBuild的效率要高于StringBuffer
-    private Handler mHandler = new Handler(new Handler.Callback() {
+    protected TextView mTV_content;
+    protected StringBuilder tvContentBuilder;
+    protected final int CHANGE_TEXT = 200;
+
+    protected Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case CHANGE_TEXT:
-                    if (mTV_Cycle != null)
-                        mTV_Cycle.setText(methdName);
+                    if (mTV_content != null)
+                        mTV_content.setText(tvContentBuilder);
                     break;
             }
             return false;
         }
     });
 
-
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         Log.i(TAG, "==onNewIntent()==");
-        methdName.append("\n嘿嘿你有啥意图？？:" + onNewIntentIndex);
-        methdName.append("\n***onNewIntent()***\n");
+        tvContentBuilder.append("\n嘿嘿你有啥意图？？:" + onNewIntentIndex);
+        tvContentBuilder.append("\n***onNewIntent()***\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
         onNewIntentIndex++;
     }
@@ -53,23 +47,11 @@ public class CycleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cycle);
-        mBnt_cycle = findViewById(R.id.mBnt_cycle);
-        mTV_Cycle = findViewById(R.id.mTV_Cycle);
-        mTV_test1 = findViewById(R.id.mTV_test1);
-        mEdt_test = findViewById(R.id.mEdt_test);
-        mTV_test1.setText("这是系统默认帮我们恢复的数据.");
+        TAG = this.getClass().getSimpleName();
         Log.i(TAG, "==onCreate()==");
-
-        mBnt_cycle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PattermActivity.class);
-                startActivity(intent);
-            }
-        });
-        methdName.append("\n页面创建完毕:" + onCreateIndex);
-        methdName.append("\n***onCreate()***\n");
+        tvContentBuilder = new StringBuilder("启动模式页面:\n");
+        tvContentBuilder.append("\n页面创建完毕:" + onCreateIndex);
+        tvContentBuilder.append("\n***onCreate()***\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
         onCreateIndex++;
     }
@@ -79,8 +61,8 @@ public class CycleActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.i(TAG, "==onRestart()==");
-        methdName.append("\n页面马上返回前台:" + onRestartIndex);
-        methdName.append("\n---onRestart()---\n");
+        tvContentBuilder.append("\n页面马上返回前台:" + onRestartIndex);
+        tvContentBuilder.append("\n---onRestart()---\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
         onRestartIndex++;
     }
@@ -89,7 +71,7 @@ public class CycleActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.i(TAG, "==onStart()==");
-        methdName.append("\n###onStart()###\n");
+        tvContentBuilder.append("\n###onStart()###\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
 
     }
@@ -99,11 +81,11 @@ public class CycleActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
 
         Log.i(TAG, "==onRestoreInstanceState()==");
-        methdName.append("\n~~~onRestoreInstanceState()~~~\n");
+        tvContentBuilder.append("\n~~~onRestoreInstanceState()~~~\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
         String test1 = savedInstanceState.getString("test1");
         //onRestoreInstanceState()恢复的数据是有价值的，可以不用做非空判断。但是onCreate()要做非空判断
-        mTV_test1.setText(test1);
+        mTV_content.setText(test1);
         Log.i(TAG, "onRestoreInstanceState():" + test1);
 
     }
@@ -111,8 +93,10 @@ public class CycleActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        StringBuilder topActivity = AppUtil.getTaskTopActivity(getApplicationContext());
+        tvContentBuilder.append("\n栈顶Activy为：" + topActivity + "\n");
         Log.i(TAG, "==onResume()==");
-        methdName.append("\n&&&onResume()&&&\n");
+        tvContentBuilder.append("\n&&&onResume()&&&\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
 
     }
@@ -123,8 +107,8 @@ public class CycleActivity extends AppCompatActivity {
         super.onPause();
 
         Log.i(TAG, "==onPause()==");
-        methdName.append("\n页面失去焦点了:" + onPauseIndex);
-        methdName.append("\n&&&onPause()&&&\n");
+        tvContentBuilder.append("\n页面失去焦点了:" + onPauseIndex);
+        tvContentBuilder.append("\n&&&onPause()&&&\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
         onPauseIndex++;
     }
@@ -133,7 +117,7 @@ public class CycleActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i(TAG, "==onSaveInstanceState()==");
-        methdName.append("\n~~~onSaveInstanceState()~~~\n");
+        tvContentBuilder.append("\n~~~onSaveInstanceState()~~~\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
         outState.putString("test1", "这是activity销毁前保存的数据");
 
@@ -143,7 +127,7 @@ public class CycleActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.i(TAG, "==onStop()==");
-        methdName.append("\n###onStop()###\n");
+        tvContentBuilder.append("\n###onStop()###\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
 
     }
@@ -152,7 +136,7 @@ public class CycleActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "==onDestroy()==");
-        methdName.append("\n***onDestroy()***\n");
+        tvContentBuilder.append("\n***onDestroy()***\n");
         mHandler.sendEmptyMessage(CHANGE_TEXT);
 
     }
