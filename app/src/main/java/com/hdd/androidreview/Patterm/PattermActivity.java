@@ -2,16 +2,13 @@ package com.hdd.androidreview.Patterm;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.hdd.androidreview.MainActivity;
+import com.hdd.androidreview.PattermBaseActivity;
 import com.hdd.androidreview.R;
-import com.hdd.androidreview.utils.AppUtil;
-import com.hdd.androidreview.utils.CommandExecution;
 
 /***********************************************************
  * 创建时间:2019/1/29

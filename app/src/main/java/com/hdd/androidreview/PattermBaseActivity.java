@@ -1,4 +1,4 @@
-package com.hdd.androidreview.Patterm;
+package com.hdd.androidreview;
 
 import android.content.Intent;
 import android.content.res.Configuration;

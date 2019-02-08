@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hdd.androidreview.Patterm.PattermActivity;
+import com.hdd.androidreview.customView.EventActivity;
+import com.hdd.androidreview.customView.TestCustomView;
 import com.hdd.androidreview.utils.permissionUtil.PermissionUtils;
 
 
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         itemList.add("生命周期");
         itemList.add("启动模式");
         itemList.add("匹配规则");
+        itemList.add("自定义view");
+        itemList.add("view的事件分发");
         MyListMain myListMain = new MyListMain(this, itemList);
         mLV_Mian.setAdapter(myListMain);
 
@@ -130,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
 //                        else
 //                            Toast.makeText(context, "匹配不成功", Toast.LENGTH_SHORT).show();
                         return;
+                    }else if ("自定义view".equals(textContent)){
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setClass(context, TestCustomView.class);
+                    }else if ("view的事件分发".equals(textContent)){
+
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setClass(context, EventActivity.class);
                     }
 
                     ComponentName component = intent.getComponent();

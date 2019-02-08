@@ -3,6 +3,7 @@ package com.hdd.androidreview.utils;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.util.Log;
+import android.view.MotionEvent;
 
 import java.util.List;
 
@@ -30,6 +31,22 @@ public class AppUtil {
             topActivity.append("\n" + runningTaskInfo.topActivity.getShortClassName());
         }
         return topActivity;
+    }
+
+    public static void eventLog(MotionEvent event, String classNanem, String mothdName) {
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.i(classNanem, "\n" + mothdName + "():ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.i(classNanem, "\n" + mothdName + "():ACTION_MOVE");
+
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.i(classNanem, "\n" + mothdName + "():ACTION_UP");
+                break;
+        }
     }
 
 }

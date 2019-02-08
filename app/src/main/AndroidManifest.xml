@@ -44,7 +44,6 @@
                 <data android:host="www.sina.com" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".CycleActivity"
             android:configChanges="orientation" />
@@ -57,12 +56,9 @@
                 <action android:name="com.hdd.androidreview.PattermActivity" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Patterm.SingleTopActivity"
-            android:launchMode="singleTop">
-
-        </activity>
+            android:launchMode="singleTop"></activity>
 
         <!--
         taskAffinity属性指向了testtaskffinityorallowtaskrep应用，
@@ -73,18 +69,15 @@
             android:name=".Patterm.SingleTaskActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:taskAffinity="cmom.han.testbt.testTask">
-
-        </activity>
+            android:taskAffinity="cmom.han.testbt.testTask"></activity>
         <activity
             android:name=".Patterm.SingleInstanceActivity"
-            android:launchMode="singleInstance">
-
-        </activity>
+            android:launchMode="singleInstance"></activity>
         <activity
             android:name=".utils.permissionUtil.PermissionUtils$PermissionActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
+        <activity android:name=".customView.TestCustomView" />
+        <activity android:name=".customView.EventActivity"></activity>
     </application>
 
 </manifest>

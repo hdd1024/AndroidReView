@@ -1,15 +1,12 @@
 package com.hdd.androidreview.Patterm;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
+import com.hdd.androidreview.PattermBaseActivity;
 import com.hdd.androidreview.R;
-import com.hdd.androidreview.utils.AppUtil;
 
 public class SingleInstanceActivity extends PattermBaseActivity implements View.OnClickListener {
     private Button mBnt_Patterm, mBnt_SingTop, mBnt_SingTask, mBnt_SingInstance;
