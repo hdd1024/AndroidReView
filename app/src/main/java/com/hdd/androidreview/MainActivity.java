@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.hdd.androidreview.Patterm.PattermActivity;
 import com.hdd.androidreview.customView.EventActivity;
 import com.hdd.androidreview.customView.TestCustomView;
+import com.hdd.androidreview.memory.LayoutMemoryActivity;
+import com.hdd.androidreview.thread.TestHandlerActivity;
 import com.hdd.androidreview.utils.permissionUtil.PermissionUtils;
 
 
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         itemList.add("匹配规则");
         itemList.add("自定义view");
         itemList.add("view的事件分发");
+        itemList.add("Handler消息机制");
+        itemList.add("内存优化");
         MyListMain myListMain = new MyListMain(this, itemList);
         mLV_Mian.setAdapter(myListMain);
 
@@ -141,6 +145,12 @@ public class MainActivity extends AppCompatActivity {
 
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.setClass(context, EventActivity.class);
+                    }else if ("Handler消息机制".equals(textContent)){
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setClass(context, TestHandlerActivity.class);
+                    }else if ("内存优化".equals(textContent)){
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setClass(context, LayoutMemoryActivity.class);
                     }
 
                     ComponentName component = intent.getComponent();

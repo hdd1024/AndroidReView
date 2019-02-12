@@ -1,9 +1,11 @@
 package com.hdd.androidreview.utils;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -47,6 +49,10 @@ public class AppUtil {
                 Log.i(classNanem, "\n" + mothdName + "():ACTION_UP");
                 break;
         }
+    }
+
+    public static void getTesLeak(Context context) {
+        Toast.makeText(context, "您的内存泄漏啦", Toast.LENGTH_SHORT).show();
     }
 
 }

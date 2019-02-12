@@ -58,7 +58,7 @@
         </activity>
         <activity
             android:name=".Patterm.SingleTopActivity"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop" />
 
         <!--
         taskAffinity属性指向了testtaskffinityorallowtaskrep应用，
@@ -69,15 +69,17 @@
             android:name=".Patterm.SingleTaskActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:taskAffinity="cmom.han.testbt.testTask"></activity>
+            android:taskAffinity="cmom.han.testbt.testTask" />
         <activity
             android:name=".Patterm.SingleInstanceActivity"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".utils.permissionUtil.PermissionUtils$PermissionActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".customView.TestCustomView" />
-        <activity android:name=".customView.EventActivity"></activity>
+        <activity android:name=".customView.EventActivity" />
+        <activity android:name=".thread.TestHandlerActivity" />
+        <activity android:name=".memory.LayoutMemoryActivity"></activity>
     </application>
 
 </manifest>

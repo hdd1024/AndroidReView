@@ -26,4 +26,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     //    implementation 'com.blankj:utilcode:1.22.6'
     implementation 'com.nineoldandroids:library:2.4.0'
+    //LeakCanary内存泄漏检测
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 }
