@@ -1,11 +1,11 @@
 package com.hdd.androidreview.thread;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.MessageQueue;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.hdd.androidreview.R;
 
-public class TestHandlerActivity extends AppCompatActivity implements View.OnClickListener {
+public class TestHandlerActivity extends Activity implements View.OnClickListener {
     private TextView mTV_testHandler;
     private Button mBnt_Post, mBnt_Send, mBnt_Callback;
     Looper mLooper;
@@ -48,10 +48,10 @@ public class TestHandlerActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_handler);
-        mTV_testHandler = findViewById(R.id.mTV_testHandler);
-        mBnt_Post = findViewById(R.id.mBnt_Post);
-        mBnt_Send = findViewById(R.id.mBnt_Send);
-        mBnt_Callback = findViewById(R.id.mBnt_Callback);
+        mTV_testHandler = (TextView) findViewById(R.id.mTV_testHandler);
+        mBnt_Post = (Button) findViewById(R.id.mBnt_Post);
+        mBnt_Send = (Button) findViewById(R.id.mBnt_Send);
+        mBnt_Callback = (Button) findViewById(R.id.mBnt_Callback);
         mBnt_Post.setOnClickListener(this);
         mBnt_Send.setOnClickListener(this);
         mBnt_Callback.setOnClickListener(this);

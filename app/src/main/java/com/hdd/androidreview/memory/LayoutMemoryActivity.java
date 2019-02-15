@@ -4,7 +4,6 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
@@ -16,7 +15,7 @@ import com.hdd.androidreview.utils.AppUtil;
 
 import java.lang.ref.WeakReference;
 
-public class LayoutMemoryActivity extends AppCompatActivity implements View.OnClickListener {
+public class LayoutMemoryActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "LayoutMemoryActivity";
     TextView mTV_incloud_merge;
     Button mBnt_layoutMemory;
@@ -59,8 +58,8 @@ public class LayoutMemoryActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layoyt_memory);
-        mTV_incloud_merge = findViewById(R.id.mTV_incloud_merge);
-        mBnt_layoutMemory = findViewById(R.id.mBnt_layoutMemory);
+        mTV_incloud_merge = (TextView) findViewById(R.id.mTV_incloud_merge);
+        mBnt_layoutMemory = (Button) findViewById(R.id.mBnt_layoutMemory);
         mBnt_layoutMemory.setOnClickListener(this);
         mTV_incloud_merge.setText("include加merge标签");
         AppUtil.getTesLeak(getApplicationContext());
@@ -76,7 +75,7 @@ public class LayoutMemoryActivity extends AppCompatActivity implements View.OnCl
             case R.id.mBnt_layoutMemory:
                 //ViewStub中布局显示出来后，他就会被从布局中移除，下面的findViewById()就会获取不到该组件。
                 if (viewstubS == 0) {
-                    mVS_layoutMemory = findViewById(R.id.mVS_layoutMemory);
+                    mVS_layoutMemory = (ViewStub) findViewById(R.id.mVS_layoutMemory);
                     mVS_layoutMemory.setVisibility(View.VISIBLE);
                     viewstubS++;
                 }

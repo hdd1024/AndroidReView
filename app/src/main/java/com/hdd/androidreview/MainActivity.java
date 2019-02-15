@@ -1,7 +1,7 @@
 package com.hdd.androidreview;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,13 +24,11 @@ import com.hdd.androidreview.customView.EventActivity;
 import com.hdd.androidreview.customView.TestCustomView;
 import com.hdd.androidreview.memory.LayoutMemoryActivity;
 import com.hdd.androidreview.thread.TestHandlerActivity;
-import com.hdd.androidreview.utils.permissionUtil.PermissionUtils;
-
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
 
     private ListView mLV_Mian;
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG, "==onCreate()==");
-        mLV_Mian = findViewById(R.id.mLV_Mian);
+        mLV_Mian = (ListView) findViewById(R.id.mLV_Mian);
         itemList = new ArrayList<>();
         itemList.add("生命周期");
         itemList.add("启动模式");
@@ -55,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         MyListMain myListMain = new MyListMain(this, itemList);
         mLV_Mian.setAdapter(myListMain);
 
-        PermissionUtils.permission(Manifest.permission_group.STORAGE).request();
+//        PermissionUtils.permission(Manifest.permission_group.STORAGE).request();
     }
 
 
@@ -157,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                     if (component == null) {
                         Toast.makeText(context, "ComponentName为空", Toast.LENGTH_SHORT).show();
                         return;
+
                     }
                     context.startActivity(intent);
 
@@ -169,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             TextView mTV_test1;
 
             MyHolder(View view) {
-                mTV_test1 = view.findViewById(android.R.id.text1);
+                mTV_test1 = (TextView) view.findViewById(android.R.id.text1);
             }
 
 

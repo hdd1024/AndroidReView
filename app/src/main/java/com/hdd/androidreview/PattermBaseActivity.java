@@ -1,17 +1,17 @@
 package com.hdd.androidreview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.hdd.androidreview.utils.AppUtil;
 
-public abstract class PattermBaseActivity extends AppCompatActivity {
+public abstract class PattermBaseActivity extends Activity {
     protected  String TAG;
     private int onNewIntentIndex = 0;
     private int onCreateIndex = 0;

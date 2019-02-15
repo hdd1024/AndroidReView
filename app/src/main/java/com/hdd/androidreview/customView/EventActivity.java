@@ -1,16 +1,14 @@
 package com.hdd.androidreview.customView;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.hdd.androidreview.R;
 import com.hdd.androidreview.utils.AppUtil;
 
-public class EventActivity extends AppCompatActivity {
+public class EventActivity extends Activity {
     private String TAG = "EventActivity";
     private TestView mTEST_EventACT;
 
@@ -20,7 +18,7 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        mTEST_EventACT = findViewById(R.id.mTEST_EventACT);
+        mTEST_EventACT = (TestView) findViewById(R.id.mTEST_EventACT);
 //        mTEST_EventACT.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

@@ -8,9 +8,9 @@ import android.view.View;
 
 import com.hdd.androidreview.utils.AppUtil;
 
-public class TestView  extends View{
+public class TestView extends View {
 
-    String TAG="TestView";
+    String TAG = "TestView";
 
     public TestView(Context context) {
         super(context);
@@ -24,16 +24,35 @@ public class TestView  extends View{
         super(context, attrs, defStyleAttr);
     }
 
+    private int mWidth = 200;
+    private int mHeight = 200;
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        if (widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(mWidth, mHeight);
+        } else if (widthMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(mWidth, heightSize);
+        } else if (heightMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(widthSize, mHeight);
+        }
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        AppUtil.eventLog(event,TAG,"dispatchTouchEvent");
+        AppUtil.eventLog(event, TAG, "dispatchTouchEvent");
         return super.dispatchTouchEvent(event);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        AppUtil.eventLog(event,TAG,"onTouchEvent");
+        AppUtil.eventLog(event, TAG, "onTouchEvent");
 
 
         return super.onTouchEvent(event);

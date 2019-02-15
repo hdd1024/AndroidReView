@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Patterm.PattermActivity"
-    tools:showIn="@layout/activity_patterm">
+    tools:context=".Patterm.PattermActivity">
 
     <Button
         android:id="@+id/mBnt_SingTop"

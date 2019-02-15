@@ -1,10 +1,10 @@
 package com.hdd.androidreview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.hdd.androidreview.Patterm.PattermActivity;
 
-public class CycleActivity extends AppCompatActivity {
+public class CycleActivity extends Activity {
     private static final String TAG = "CycleActivity";
     private final int CHANGE_TEXT = 200;
 
@@ -54,10 +54,10 @@ public class CycleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cycle);
-        mBnt_cycle = findViewById(R.id.mBnt_cycle);
-        mTV_Cycle = findViewById(R.id.mTV_Cycle);
-        mTV_test1 = findViewById(R.id.mTV_test1);
-        mEdt_test = findViewById(R.id.mEdt_test);
+        mBnt_cycle = (Button) findViewById(R.id.mBnt_cycle);
+        mTV_Cycle = (TextView) findViewById(R.id.mTV_Cycle);
+        mTV_test1 = (TextView) findViewById(R.id.mTV_test1);
+        mEdt_test = (EditText) findViewById(R.id.mEdt_test);
         mTV_test1.setText("这是系统默认帮我们恢复的数据.");
         Log.i(TAG, "==onCreate()==");
 

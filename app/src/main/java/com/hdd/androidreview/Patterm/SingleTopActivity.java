@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.hdd.androidreview.PattermBaseActivity;
 import com.hdd.androidreview.R;
@@ -16,11 +17,11 @@ public class SingleTopActivity extends PattermBaseActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_top);
-        mTV_content = findViewById(R.id.mTV_content);
-        mBnt_Patterm = findViewById(R.id.mBnt_Patterm);
-        mBnt_SingInstance = findViewById(R.id.mBnt_SingInstance);
-        mBnt_SingTask = findViewById(R.id.mBnt_SingTask);
-        mBnt_SingTop = findViewById(R.id.mBnt_SingTop);
+        mTV_content = (TextView) findViewById(R.id.mTV_content);
+        mBnt_Patterm = (Button) findViewById(R.id.mBnt_Patterm);
+        mBnt_SingInstance = (Button) findViewById(R.id.mBnt_SingInstance);
+        mBnt_SingTask = (Button) findViewById(R.id.mBnt_SingTask);
+        mBnt_SingTop = (Button) findViewById(R.id.mBnt_SingTop);
         mBnt_Patterm.setOnClickListener(this);
         mBnt_SingInstance.setOnClickListener(this);
         mBnt_SingTask.setOnClickListener(this);
