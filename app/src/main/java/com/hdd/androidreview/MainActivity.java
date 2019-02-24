@@ -20,8 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hdd.androidreview.Patterm.PattermActivity;
-import com.hdd.androidreview.customView.EventActivity;
+import com.hdd.androidreview.customView.Circle2Activity;
+import com.hdd.androidreview.customView.evnent.EventActivity;
 import com.hdd.androidreview.customView.TestCustomView;
+import com.hdd.androidreview.customView.evnent.HorizonalscrollViewExActivity;
 import com.hdd.androidreview.memory.LayoutMemoryActivity;
 import com.hdd.androidreview.thread.TestHandlerActivity;
 
@@ -49,6 +51,8 @@ public class MainActivity extends Activity {
         itemList.add("view的事件分发");
         itemList.add("Handler消息机制");
         itemList.add("内存优化");
+        itemList.add("滑动冲突");
+        itemList.add("圆形自定义View");
         MyListMain myListMain = new MyListMain(this, itemList);
         mLV_Mian.setAdapter(myListMain);
 
@@ -120,7 +124,7 @@ public class MainActivity extends Activity {
                         //判断是否匹配成功
 
                         ComponentName componentName = intent.resolveActivity(context.getPackageManager());
-                        PackageManager packageManager=context.getPackageManager();
+                        PackageManager packageManager = context.getPackageManager();
                         ResolveInfo resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
                         //packageManager的resolveActivity()方式
                         if (resolveInfo != null)
@@ -135,19 +139,26 @@ public class MainActivity extends Activity {
 //                        else
 //                            Toast.makeText(context, "匹配不成功", Toast.LENGTH_SHORT).show();
                         return;
-                    }else if ("自定义view".equals(textContent)){
+                    } else if ("自定义view".equals(textContent)) {
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.setClass(context, TestCustomView.class);
-                    }else if ("view的事件分发".equals(textContent)){
+                    } else if ("view的事件分发".equals(textContent)) {
 
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.setClass(context, EventActivity.class);
-                    }else if ("Handler消息机制".equals(textContent)){
+                    } else if ("Handler消息机制".equals(textContent)) {
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.setClass(context, TestHandlerActivity.class);
-                    }else if ("内存优化".equals(textContent)){
+                    } else if ("内存优化".equals(textContent)) {
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.setClass(context, LayoutMemoryActivity.class);
+                    } else if ("滑动冲突".equals(textContent)) {
+                        intent.setClass(context, HorizonalscrollViewExActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    } else if ("圆形自定义View".equals(textContent)) {
+                        intent.setClass(context, Circle2Activity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
 
                     ComponentName component = intent.getComponent();

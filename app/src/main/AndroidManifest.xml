@@ -71,13 +71,15 @@
         <activity
             android:name=".Patterm.SingleInstanceActivity"
             android:launchMode="singleInstance" />
-        <!--<activity-->
-            <!--android:name=".utils.permissionUtil.PermissionUtils$PermissionActivity"-->
-            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!-- <activity -->
+        <!-- android:name=".utils.permissionUtil.PermissionUtils$PermissionActivity" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
         <activity android:name=".customView.TestCustomView" />
-        <activity android:name=".customView.EventActivity" />
+        <activity android:name=".customView.evnent.EventActivity" />
         <activity android:name=".thread.TestHandlerActivity" />
-        <activity android:name=".memory.LayoutMemoryActivity"></activity>
+        <activity android:name=".memory.LayoutMemoryActivity" />
+        <activity android:name=".customView.evnent.HorizonalscrollViewExActivity"></activity>
+        <activity android:name=".customView.Circle2Activity"></activity>
     </application>
 
 </manifest>

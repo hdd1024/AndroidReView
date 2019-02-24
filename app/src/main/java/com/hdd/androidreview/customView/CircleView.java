@@ -105,7 +105,7 @@ public class CircleView extends View {
         }
         lastX = rawX;
         lastY = rawY;
-//        return true;
-        return super.onTouchEvent(event);
+        return true;
+//        return super.onTouchEvent(event);
     }
 }

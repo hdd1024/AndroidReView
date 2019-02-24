@@ -43,16 +43,37 @@ public class TestView extends View {
         }
     }
 
+    private int mLastX;
+    private int mLastY;
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        AppUtil.eventLog(event, TAG, "dispatchTouchEvent");
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //子View干预父控件拦截此事件
+                getParent().requestDisallowInterceptTouchEvent(true);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int distanceX = x - mLastX;
+                int distanceY = y - mLastY;
+                if (Math.abs(distanceX) > Math.abs(distanceY)) {
+                    //让父元素继续拦截所需要的事件
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        mLastX = x;
+        mLastY = y;
         return super.dispatchTouchEvent(event);
     }
 
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
-        AppUtil.eventLog(event, TAG, "onTouchEvent");
 
 
         return super.onTouchEvent(event);

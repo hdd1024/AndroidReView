@@ -1,11 +1,13 @@
-package com.hdd.androidreview.customView;
+package com.hdd.androidreview.customView.evnent;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.hdd.androidreview.R;
+import com.hdd.androidreview.customView.TestView;
 import com.hdd.androidreview.utils.AppUtil;
 
 public class EventActivity extends Activity {
@@ -50,4 +52,18 @@ public class EventActivity extends Activity {
         return super.onTouchEvent(event);
     }
 
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+
+        Log.i(TAG, "onUserInteraction");
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        Log.i(TAG, "onUserLeaveHint");
+
+    }
 }

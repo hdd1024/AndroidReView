@@ -146,4 +146,16 @@ public abstract class PattermBaseActivity extends Activity {
         super.onConfigurationChanged(newConfig);
         Log.i(TAG, "onConfigurationChanged配置信息:" + newConfig.orientation);
     }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        Log.i(TAG, "onUserInteraction");
+    }
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        Log.i(TAG, "onUserLeaveHint");
+    }
+
 }
